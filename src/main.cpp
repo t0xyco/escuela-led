@@ -46,6 +46,10 @@ const char *    fversion        =   "1.0.0";
 /*===================[Variables globales]========================================*/
 
 
+/*===================[Variables externas]========================================*/
+
+extern          bool                flag_seg;
+
 //===================[Instancias]================================================*/
 
 
@@ -74,9 +78,11 @@ void setup() {
 }
 
 void loop() {
-delay(retardo);
-digitalWrite(LED,HIGH);
-delay(retardo);
-digitalWrite(LED,LOW);
+  if (flag_seg){
+    digitalWrite(LED,HIGH);
+  }
+  else{
+    digitalWrite(LED,LOW);  
+  }
 }
 
