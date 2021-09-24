@@ -32,6 +32,7 @@
 
 /*===================[Inclusiones]===============================================*/
 #include <Arduino.h>
+#include "interrupciones.h"
 
 /*===================[Variables harcodeadas]=====================================*/
 uint32_t        retardo         =   500;
@@ -61,6 +62,14 @@ void setup() {
   
   //--Pone en 0 el pin del led
   digitalWrite(LED, LOW);
+
+  //--Configuración interrupción por timer
+  noInterrupts();
+  timer0_isr_init();
+  timer0_attachInterrupt(timer0_ISR);
+  timer0_write(ESP.getCycleCount() + 80000000L); // 80MHz == 1sec
+  interrupts();
+  delay(100);
 
 }
 
